@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     res.send('Hello, World!');
 });
 // your routes here
-app.get("*", (req, res) => {
+app.get(/(.*)/, (req, res) => {
     res.status(404).json({
         success: false,
         message: "Page not found",
