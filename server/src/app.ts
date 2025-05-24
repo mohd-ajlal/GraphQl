@@ -3,10 +3,11 @@
 // import cors from 'cors'
 // import { errorMiddleware } from "@/middlewares/error.js"
 // import morgan from "morgan"
+// import { Query } from "mongoose";
 import dotenv from "dotenv";
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { Query } from "mongoose";
+import { schema } from "./graphql/schema/schema.js";
 
 dotenv.config({ path: "./.env" });
 
@@ -14,7 +15,7 @@ export const envMode = process.env.NODE_ENV?.trim() || "DEVELOPMENT";
 const port = Number(process.env.PORT) || 3000;
 
 const server = new ApolloServer({
-  typeDefs: ` type Query { Hello: String, Hello2:String } `,
+  typeDefs: schema,
   resolvers: {
     Query:{
       Hello: () => "Hello, World!",
