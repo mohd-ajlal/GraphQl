@@ -12,6 +12,7 @@ import { connectDB } from "./database/database.js";
 // import mongoose from "mongoose";
 // import { User } from "./models/userModel.js";
 import { getAllUsers } from "./controllers/user.js";
+import { getAllCourses } from "./controllers/course.js";
 
 dotenv.config({ path: "./.env" });
 
@@ -26,10 +27,8 @@ const server = new ApolloServer({
   typeDefs: schema,
   resolvers: {
     Query:{
-      Hello: () => "Hello, World!",
-      Hello2: () => "Hello, World 2!",
-      WOW: () => "WOW, this is amazing!",
-      users: getAllUsers
+      users: getAllUsers,
+      courses: getAllCourses
     },
   },
 });

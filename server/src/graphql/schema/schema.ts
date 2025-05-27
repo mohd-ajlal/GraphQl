@@ -14,11 +14,42 @@ type User{
 }
     
 
+type Course{
+    _id:ID!
+    title:String!
+    description:String!
+    instructor:String!
+    ratingsAverage:Int!
+    price:Int!
+    category:String!
+    subCategory:String!
+    level:String!
+    language:String!
+    whatYouWillLearn:[String!]!
+    requirements:[String!]!
+    targetAudience:[String!]!
+    isPublished:Boolean!
+    isFree:Boolean!
+    isApproved:Boolean!
+    isRejected:Boolean!
+    isFeatured:Boolean!
+    isTrending:Boolean!
+    isBestSeller:Boolean!
+    coverImage:String!
+    previewVideo:String!
+    students:[String!]!
+    createdAt:String!
+    updatedAt:String!
+}
+
+
+
+
 
 type Query {
-    Hello: String
-    Hello2: String
-    WOW: String
     users:[User]
+    courses:[Course]
+    # sections:[Section]
+    # lectures:[Lecture]
 }
     `;
