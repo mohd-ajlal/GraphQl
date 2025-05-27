@@ -8,11 +8,19 @@ import dotenv from "dotenv";
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { schema } from "./graphql/schema/schema.js";
+import { connectDB } from "./database/database.js";
+// import mongoose from "mongoose";
+// import { User } from "./models/userModel.js";
+import { getAllUsers } from "./controllers/user.js";
 
 dotenv.config({ path: "./.env" });
 
 export const envMode = process.env.NODE_ENV?.trim() || "DEVELOPMENT";
 const port = Number(process.env.PORT) || 3000;
+
+const mongoURI = process.env.MONGO_URI!;
+
+connectDB(mongoURI)
 
 const server = new ApolloServer({
   typeDefs: schema,
@@ -20,6 +28,8 @@ const server = new ApolloServer({
     Query:{
       Hello: () => "Hello, World!",
       Hello2: () => "Hello, World 2!",
+      WOW: () => "WOW, this is amazing!",
+      users: getAllUsers
     },
   },
 });

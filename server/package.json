@@ -21,6 +21,7 @@
       "express": "5.1.0",
       "graphql": "^16.11.0",
       "helmet": "8.1.0",
+      "mongoose": "^8.15.1",
       "morgan": "1.10.0"
    },
    "devDependencies": {
