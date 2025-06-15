@@ -11,8 +11,8 @@ import { schema } from "./graphql/schema/schema.js";
 import { connectDB } from "./database/database.js";
 // import mongoose from "mongoose";
 // import { User } from "./models/userModel.js";
-import { getAllUsers } from "./controllers/user.js";
-import { getAllCourses } from "./controllers/course.js";
+import { getAllUsers, getUserById } from "./controllers/user.js";
+import { getAllCourses, getCoursesById } from "./controllers/course.js";
 
 dotenv.config({ path: "./.env" });
 
@@ -28,7 +28,13 @@ const server = new ApolloServer({
   resolvers: {
     Query:{
       users: getAllUsers,
-      courses: getAllCourses
+      courses: getAllCourses,
+      course:getCoursesById,
+    },
+    Course:{
+      instructor:async(course)=>{
+        return await getUserById(course.instructor)
+      },
     },
   },
 });
